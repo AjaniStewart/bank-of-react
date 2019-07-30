@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import md5 from 'blueimp-md5'
 import { Link } from 'react-router-dom'
+import './credit.css'
 
 class Credits extends Component {
   constructor(props) {
