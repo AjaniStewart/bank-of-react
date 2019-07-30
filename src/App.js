@@ -5,6 +5,7 @@ import UserProfile from './components/UserProfile'
 import LogIn from './components/Login'
 import axios from 'axios'
 import Credits from './components/Credits'
+import Debits from './components/Debits'
 
 
 class App extends Component {
@@ -76,6 +77,7 @@ class App extends Component {
     const UserProfileComponent = () => <UserProfile userName={this.state.currentUser.userName} memberSince={this.state.currentUser.memberSince} />;
     const LogInComponent = () => <LogIn user={this.state.currentUser} mockLogin={this.mockLogin} {...this.props}/>
     const CreditsViewComponent = () => <Credits credits={this.state.credits} addCredit={this.addNewCredit} totalCredits={this.state.creditTotal} accountBalance={this.state.accountBalance}/>
+    const DebitsViewComponent = () => <Debits debits={this.state.debits} addDebit={this.addNewDebit} totalDebits={this.state.debitTotal} accountBalance={this.state.accountBalance}/>
 
     return (
       <Router>
@@ -84,6 +86,7 @@ class App extends Component {
           <Route exact path="/userProfile" render={UserProfileComponent}/>
           <Route exact path="/login" render={LogInComponent}/>
           <Route exact path="/credits" render={CreditsViewComponent}/>
+          <Route exact path="/debits" render={DebitsViewComponent}/>
         </Switch>
       </Router>
       

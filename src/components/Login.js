@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Redirect } from 'react-router-dom'
+import { Redirect, Link } from 'react-router-dom'
 
 class LogIn extends Component {
   constructor(props) {
@@ -46,6 +46,7 @@ class LogIn extends Component {
           </div>
           <button>Log In</button>
         </form>
+        <Link to="/">Back to Home</Link>
       </div>
     );
   }
