@@ -7,8 +7,8 @@ class UserProfile extends Component {
       <div className="main">
         <h1>User Profile</h1>
 
-        <div>Username: {this.props.userName}</div>
-        <div>Member Since: {this.props.memberSince}</div>
+        <div>Username: {this.props.userName}</div> <br />
+        <div>Member Since: {this.props.memberSince}</div><br />
         <Link to="/">Back to Home</Link>
       </div>
     );
