@@ -30,7 +30,7 @@ class LogIn extends Component {
   }
 
   render() {
-    if (this.state.redirect) {
+    if (this.state.redirect || this.props.loggedIn) {
       return (<Redirect to="/userProfile"/>);
     }
     return (
@@ -44,7 +44,7 @@ class LogIn extends Component {
             <label htmlFor="password">Password</label>
             <input type="password" name="password" onChange={this.handleChange} value={this.state.user.password}/>
           </div>
-          <button>Log In</button>
+          <button type="submit">Log In</button>
         </form>
         <Link to="/">Back to Home</Link>
       </div>

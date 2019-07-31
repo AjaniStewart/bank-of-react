@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import md5 from 'blueimp-md5'
-import { Link } from 'react-router-dom'
+import { Link, Redirect } from 'react-router-dom'
 import './credit.css'
 
 class Credits extends Component {
@@ -34,42 +34,47 @@ class Credits extends Component {
   }
 
   render() {
-    return (
-      <div>
+    if (this.props.loggedIn) {
+
+      return (
         <div>
-          <h1>Credits</h1>
-          <h3>Account Balance: {this.props.accountBalance}</h3>
-          <h3>Total Credits: {this.props.totalCredits}</h3>
+          <div>
+            <h1>Credits</h1>
+            <h3>Account Balance: {this.props.accountBalance}</h3>
+            <h3>Total Credits: {this.props.totalCredits}</h3>
+          </div>
+          <div>
+            {
+              this.props.credits.map(entry => {
+                return (
+                  <div className="creditEntry" key={entry.id}>
+                    <p>Description: {entry.description}</p>
+                    <p>Amount: {entry.amount}</p>
+                    <p>Date: {entry.date}</p>
+                  </div>
+                );
+              })
+            }
+          </div>
+          <div>
+            <form onSubmit={this.handleSubmit}>
+              <div>
+                <label htmlFor="creditDesc">Credit Description</label>
+                <input name="creditDesc" type="text" onChange={this.handleChange} value={this.state.creditDesc} placeholder="Describe your transaction"/>
+              </div>
+              <div>
+                <label htmlFor="creditAmt">Credit Amount</label>
+                <input name="creditAmt" type="number" onChange={this.handleChange} value={this.state.creditAmt} placeholder="0.00"/>
+              </div>
+              <button type="submit">Submit</button>
+            </form>
+          </div>
+          <Link to="/">Back To Home</Link>
         </div>
-        <div>
-          {
-            this.props.credits.map(entry => {
-              return (
-                <div className="creditEntry" key={entry.id}>
-                  <p>Description: {entry.description}</p>
-                  <p>Amount: {entry.amount}</p>
-                  <p>Date: {entry.date}</p>
-                </div>
-              );
-            })
-          }
-        </div>
-        <div>
-          <form onSubmit={this.handleSubmit}>
-            <div>
-              <label htmlFor="creditDesc">Credit Description</label>
-              <input name="creditDesc" type="text" onChange={this.handleChange} value={this.state.creditDesc} placeholder="Describe your transaction"/>
-            </div>
-            <div>
-              <label htmlFor="creditAmt">Credit Amount</label>
-              <input name="creditAmt" type="number" onChange={this.handleChange} value={this.state.creditAmt} placeholder="0.00"/>
-            </div>
-            <button type="submit">Submit</button>
-          </form>
-        </div>
-        <Link to="/">Back To Home</Link>
-      </div>
-    );
+      );
+    } else {
+      return (<Redirect to="/login"/>);
+    }
   }
 }
 

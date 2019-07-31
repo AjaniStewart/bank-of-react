@@ -15,13 +15,14 @@ class App extends Component {
     this.state = {
       accountBalance: 0,
       currentUser: {
-        userName: 'bob_loblaw',
+        userName: '',
         memberSince: '08/23/99'
       },
       debits: [],
       credits: [],
       debitTotal: 0,
       creditTotal: 0,
+      loggedIn: false
     }
     this.calculateAccountBalance = this.calculateAccountBalance.bind(this);
     this.fetchAccountData = this.fetchAccountData.bind(this);
@@ -54,7 +55,8 @@ class App extends Component {
     const newUser = {...this.state.currentUser};
     newUser.userName = logInInfo.userName;
     this.setState({
-      currentUser: newUser
+      currentUser: newUser,
+      loggedIn: true
     });
   }
 
@@ -73,20 +75,20 @@ class App extends Component {
   }
 
   render() {
-    const HomeComponent = () => <Home accountBalance={this.state.accountBalance} debitTotal={this.state.debitTotal} creditTotal={this.state.creditTotal}/>;
-    const UserProfileComponent = () => <UserProfile userName={this.state.currentUser.userName} memberSince={this.state.currentUser.memberSince} />;
-    const LogInComponent = () => <LogIn user={this.state.currentUser} mockLogin={this.mockLogin} {...this.props}/>
-    const CreditsViewComponent = () => <Credits credits={this.state.credits} addCredit={this.addNewCredit} totalCredits={this.state.creditTotal} accountBalance={this.state.accountBalance}/>
-    const DebitsViewComponent = () => <Debits debits={this.state.debits} addDebit={this.addNewDebit} totalDebits={this.state.debitTotal} accountBalance={this.state.accountBalance}/>
+    const HomeComponent = () => <Home accountBalance={this.state.accountBalance} debitTotal={this.state.debitTotal} creditTotal={this.state.creditTotal} loggedIn={this.state.loggedIn}/>;
+    const UserProfileComponent = () => <UserProfile userName={this.state.currentUser.userName} memberSince={this.state.currentUser.memberSince} loggedIn={this.state.loggedIn}/>;
+    const LogInComponent = () => <LogIn user={this.state.currentUser} mockLogin={this.mockLogin} loggedIn={this.state.loggedIn} {...this.props}/>
+    const CreditsViewComponent = () => <Credits credits={this.state.credits} addCredit={this.addNewCredit} totalCredits={this.state.creditTotal} accountBalance={this.state.accountBalance} loggedIn={this.state.loggedIn}/>
+    const DebitsViewComponent = () => <Debits debits={this.state.debits} addDebit={this.addNewDebit} totalDebits={this.state.debitTotal} accountBalance={this.state.accountBalance} loggedIn={this.state.loggedIn}/>
 
     return (
-      <Router>
+      <Router basename="/bank-of-react">
         <Switch>
-          <Route exact path="/" basename="/bank-of-react" render={HomeComponent}/>
-          <Route exact path="/userProfile" basename="/bank-of-react" render={UserProfileComponent}/>
-          <Route exact path="/login" basename="/bank-of-react" render={LogInComponent}/>
-          <Route exact path="/credits" basename="/bank-of-react" render={CreditsViewComponent}/>
-          <Route exact path="/debits" basename="/bank-of-react" render={DebitsViewComponent}/>
+          <Route exact path="/"  render={HomeComponent}/>
+          <Route exact path="/userProfile"  render={UserProfileComponent}/>
+          <Route exact path="/login"  render={LogInComponent}/>
+          <Route exact path="/credits"  render={CreditsViewComponent}/>
+          <Route exact path="/debits"  render={DebitsViewComponent}/>
         </Switch>
       </Router>
       

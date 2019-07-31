@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import md5 from 'blueimp-md5'
-import { Link } from 'react-router-dom'
+import { Link, Redirect } from 'react-router-dom'
 import './debit.css'
 
 class Debits extends Component {
@@ -34,42 +34,46 @@ class Debits extends Component {
   }
 
   render() {
-    return (
-      <div>
+    if (this.props.loggedIn) {
+      return (
         <div>
-          <h1>Debits</h1>
-          <h3>Account Balance: {this.props.accountBalance}</h3>
-          <h3>Total Debits: {this.props.totalDebits}</h3>
+          <div>
+            <h1>Debits</h1>
+            <h3>Account Balance: {this.props.accountBalance}</h3>
+            <h3>Total Debits: {this.props.totalDebits}</h3>
+          </div>
+          <div>
+            {
+              this.props.debits.map(entry => {
+                return (
+                  <div className="debitEntry" key={entry.id}>
+                    <p>Description: {entry.description}</p>
+                    <p>Amount: {entry.amount}</p>
+                    <p>Date: {entry.date}</p>
+                  </div>
+                );
+              })
+            }
+          </div>
+          <div>
+            <form onSubmit={this.handleSubmit}>
+              <div>
+                <label htmlFor="debitDesc">Debit Description</label>
+                <input name="debitDesc" type="text" onChange={this.handleChange} value={this.state.debitDesc} placeholder="Describe your transaction"/>
+              </div>
+              <div>
+                <label htmlFor="debitAmt">Debit Amount</label>
+                <input name="debitAmt" type="number" onChange={this.handleChange} value={this.state.debitAmt} placeholder="0.00"/>
+              </div>
+              <button type="submit">Submit</button>
+            </form>
+          </div>
+          <Link to="/">Back To Home</Link>
         </div>
-        <div>
-          {
-            this.props.debits.map(entry => {
-              return (
-                <div className="debitEntry" key={entry.id}>
-                  <p>Description: {entry.description}</p>
-                  <p>Amount: {entry.amount}</p>
-                  <p>Date: {entry.date}</p>
-                </div>
-              );
-            })
-          }
-        </div>
-        <div>
-          <form onSubmit={this.handleSubmit}>
-            <div>
-              <label htmlFor="debitDesc">Debit Description</label>
-              <input name="debitDesc" type="text" onChange={this.handleChange} value={this.state.debitDesc} placeholder="Describe your transaction"/>
-            </div>
-            <div>
-              <label htmlFor="debitAmt">Debit Amount</label>
-              <input name="debitAmt" type="number" onChange={this.handleChange} value={this.state.debitAmt} placeholder="0.00"/>
-            </div>
-            <button type="submit">Submit</button>
-          </form>
-        </div>
-        <Link to="/">Back To Home</Link>
-      </div>
-    );
+      );
+    } else {
+      return (<Redirect to="/login"/>);
+    }
   }
 }
 
