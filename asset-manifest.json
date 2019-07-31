@@ -1,14 +1,14 @@
 {
   "files": {
     "main.css": "/bank-of-react/static/css/main.d08945fa.chunk.css",
-    "main.js": "/bank-of-react/static/js/main.332189a9.chunk.js",
-    "main.js.map": "/bank-of-react/static/js/main.332189a9.chunk.js.map",
+    "main.js": "/bank-of-react/static/js/main.70738f45.chunk.js",
+    "main.js.map": "/bank-of-react/static/js/main.70738f45.chunk.js.map",
     "runtime~main.js": "/bank-of-react/static/js/runtime~main.6b66607f.js",
     "runtime~main.js.map": "/bank-of-react/static/js/runtime~main.6b66607f.js.map",
-    "static/js/2.342ab72d.chunk.js": "/bank-of-react/static/js/2.342ab72d.chunk.js",
-    "static/js/2.342ab72d.chunk.js.map": "/bank-of-react/static/js/2.342ab72d.chunk.js.map",
+    "static/js/2.b13d04e1.chunk.js": "/bank-of-react/static/js/2.b13d04e1.chunk.js",
+    "static/js/2.b13d04e1.chunk.js.map": "/bank-of-react/static/js/2.b13d04e1.chunk.js.map",
     "index.html": "/bank-of-react/index.html",
-    "precache-manifest.3d9f6a0727e2014b90bc02844fd712c2.js": "/bank-of-react/precache-manifest.3d9f6a0727e2014b90bc02844fd712c2.js",
+    "precache-manifest.65d97b5c9ce4a1dbb9fadb0e2213b440.js": "/bank-of-react/precache-manifest.65d97b5c9ce4a1dbb9fadb0e2213b440.js",
     "service-worker.js": "/bank-of-react/service-worker.js",
     "static/css/main.d08945fa.chunk.css.map": "/bank-of-react/static/css/main.d08945fa.chunk.css.map"
   }
